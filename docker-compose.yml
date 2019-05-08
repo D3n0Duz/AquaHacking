@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app/:/home/app/
+    depends_on:
+      - db
+  db:
+    image: mdillon/postgis
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    expose:
+      - 5432
